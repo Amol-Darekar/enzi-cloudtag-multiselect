@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>    
+    <link href="https://localhost/CloudTagResources/application_css/cloud-app.css" rel="stylesheet" />
+    <script src="https://localhost/CloudTagResources/vendor_js/jquery/jquery.min.js"></script>
+    <script src="https://localhost/CloudTagResources/vendor_js/angular/angular.min.js"></script>
+    <script src="https://localhost/CloudTagResources/application_js/cloud-app.js"></script>
+    <title>Cloude Directive Demo</title>
+    <script type="text/javascript">
+		var cloudApp = angular.module('cloudApp', ['enziCloudTag']);
+        cloudApp.controller('cloudController',['$scope',function($scope){
+        	$scope.watermark = 'Enter Skill Name';
+        	$scope.originalList = 'C;C++';
+        	$scope.csvlist = $scope.originalList;
+        	$scope.delimiter = ';'
+
+			$scope.list = [
+				{ index: '1', name: 'Java'},
+				{ index: '2', name: '.Net'},
+				{ index: '3', name: 'PHP'},
+				{ index: '4', name: 'Java Script'}
+			];
+
+			$scope.save = function () {
+				$scope.originalList = $scope.csvlist;
+			}
+        }]);
+    
+    </script>
+</head>
+<body ng-app="cloudApp" ng-controller="cloudController">
+    <div style="width:400px;margin-left:100px;">
+         <b>First</b>
+		<div enzi-cloud-multiselect editable="true" list="list" watermark="watermark" validation="true" csvlist="csvlist" delimiter="delimiter">
+		</div>
+		<label>{{originalList}}</label>
+		<input type="button" ng-click="save()" value="save" />
+		<br />
+    </div>
+</body>
+</html>
+
+
